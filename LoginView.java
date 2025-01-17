@@ -1,3 +1,6 @@
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -6,6 +9,7 @@ import javafx.stage.Stage;
 
 public class LoginView {
     private Stage primaryStage;
+    private UserOperations userOperations;
 
     public LoginView(Stage primaryStage) {
         this.primaryStage = primaryStage;
@@ -36,8 +40,12 @@ public class LoginView {
             String username = usernameField.getText();
             String password = passwordField.getText();
 
-            UserOperations userOps = new UserOperations();
-            if (userOps.login(username, password)) {
+            try {
+                userOperations = new UserOperations();
+            } catch (SQLException ex) {
+                Logger.getLogger(LoginView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            if (userOperations.loginUser(username, password)) {
                 // Login sukses, arahkan ke Dashboard
                 DashboardView dashboardView = new DashboardView(primaryStage);
                 primaryStage.setScene(new Scene(dashboardView.getView(), 800, 600));
@@ -45,7 +53,7 @@ public class LoginView {
                 showError("Login gagal! Periksa username dan password Anda.");
             }
         });
-
+        
         root.getChildren().addAll(titleLabel, usernameField, passwordField, loginButton, registerLink);
         return root;
     }

@@ -1,0 +1,37 @@
+/* styles.css */
+.root {
+    -fx-background-color: #f4f4f4;
+    -fx-font-family: "Arial, Helvetica, sans-serif";
+}
+
+.label {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
+
+.text-field, .password-field {
+    -fx-font-size: 14px;
+    -fx-pref-width: 300px;
+    -fx-padding: 8px;
+}
+
+.button {
+    -fx-background-color: #007bff;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-pref-width: 100px;
+    -fx-padding: 8px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-cursor: hand;
+}
+
+.button:hover {
+    -fx-background-color: #0056b3;
+}
+
+.label:hover {
+    -fx-underline: true;
+    -fx-cursor: hand;
+}

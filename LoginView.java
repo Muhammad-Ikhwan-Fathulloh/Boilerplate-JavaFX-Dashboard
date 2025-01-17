@@ -18,14 +18,21 @@ public class LoginView {
     public VBox getView() {
         VBox root = new VBox(10);
         root.setPadding(new Insets(20));
+        root.getStyleClass().add("root");
 
         // Elemen Login
         Label titleLabel = new Label("Login");
+        titleLabel.setStyle("-fx-font-size: 24px; -fx-font-weight: bold;");
+
         TextField usernameField = new TextField();
         usernameField.setPromptText("Username");
+        usernameField.setStyle("-fx-pref-width: 300px; -fx-padding: 10px;");
+
         PasswordField passwordField = new PasswordField();
         passwordField.setPromptText("Password");
+        passwordField.setStyle("-fx-pref-width: 300px; -fx-padding: 10px;");
         Button loginButton = new Button("Login");
+        loginButton.setStyle("-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-padding: 10px 20px;");
 
         // Elemen Register
         Label registerLink = new Label("Belum punya akun? Register di sini.");
@@ -33,7 +40,8 @@ public class LoginView {
         registerLink.setOnMouseClicked(event -> {
             // Arahkan ke RegisterView
             RegisterView registerView = new RegisterView(primaryStage);
-            primaryStage.setScene(new Scene(registerView.getView(), 800, 600));
+            Scene registerScene = new Scene(registerView.getView(), 800, 600);
+            primaryStage.setScene(registerScene);
         });
 
         loginButton.setOnAction(e -> {
@@ -47,8 +55,9 @@ public class LoginView {
             }
             if (userOperations.loginUser(username, password)) {
                 // Login sukses, arahkan ke Dashboard
-                DashboardView dashboardView = new DashboardView(primaryStage);
-                primaryStage.setScene(new Scene(dashboardView.getView(), 800, 600));
+                DashboardView dashboardView = new DashboardView(primaryStage, username);
+                Scene dashboardScene = new Scene(dashboardView.getView(), 800, 600);
+                primaryStage.setScene(dashboardScene);
             } else {
                 showError("Login gagal! Periksa username dan password Anda.");
             }

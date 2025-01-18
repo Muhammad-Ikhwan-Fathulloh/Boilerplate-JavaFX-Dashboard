@@ -47,7 +47,6 @@ public class RegisterView {
             // Arahkan ke RegisterView
             LoginView loginView = new LoginView(primaryStage);
             Scene loginScene = new Scene(loginView.getView(), 800, 600);
-            loginScene.getStylesheets().add("style.css");
             primaryStage.setScene(loginScene);
         });
 

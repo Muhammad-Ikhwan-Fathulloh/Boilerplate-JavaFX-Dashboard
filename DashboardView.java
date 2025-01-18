@@ -21,7 +21,6 @@ public class DashboardView {
     public BorderPane getView() {
         BorderPane root = new BorderPane();
         root.setPadding(new Insets(20)); // Add padding to the root
-        User user = userOperations.getProfile(username);
 
         // Menu Navigasi
         VBox menu = new VBox(10);
@@ -61,7 +60,9 @@ public class DashboardView {
         } catch (SQLException ex) {
             Logger.getLogger(DashboardView.class.getName()).log(Level.SEVERE, null, ex);
         }
-               
+        
+        User user = userOperations.getProfile(username);
+
         content.getChildren().add(welcomeLabel);
         if (user != null) {
             // Display user profile information (e.g., in a Label)
